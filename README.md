@@ -1,7 +1,7 @@
 
 # Tactico Developer Guide
 
-Welcome to **Tactico by Bukola**! This guide is designed to help developers understand the codebase, architecture, and how to customize the application—with a special focus on the AI integration.
+Welcome to **Tactico by Bukola**! This guide is designed to help developers understand the codebase, architecture, and how to customise the application, with a special focus on the AI integration.
 
 ## Project Overview
 
@@ -22,7 +22,7 @@ The application allows users to drag-and-drop players, draw tactical lines/arrow
   - Event listeners (pointer down/move/up for drawing and dragging).
   - UI layout (Header, Sidebar, Canvas, Footer).
 - **`types.ts`**: Defines core data models (`Player`, `Drawing`, `Tool`, `Team`). **Start here** to understand the data shape.
-- **`constants.ts`**: Configuration for pitch dimensions, initial coordinates, colors, and formation templates.
+- **`constants.ts`**: Configuration for pitch dimensions, initial coordinates, colours, and formation templates.
 - **`ollamaService.ts`**: The bridge to your local AI model.
 - **`components/PitchLayer.tsx`**: A pure SVG component that renders the green pitch background and markings.
 
@@ -48,7 +48,7 @@ Tools are defined in the `Tool` enum (`types.ts`).
 
 ## AI Integration (Ollama)
 
-This is the most advanced feature of Tactico. It uses **Ollama** running locally on the user's machine to analyze the board state.
+This is the most advanced feature of Tactico. It uses **Ollama** running locally on the user's machine to analyse the board state.
 
 ### How it works (`ollamaService.ts`)
 1.  **Data Capture**: The app captures the current state of:
@@ -58,7 +58,7 @@ This is the most advanced feature of Tactico. It uses **Ollama** running locally
 3.  **API Call**: Sends a `POST` request to `http://localhost:11434/api/generate`.
 4.  **Model**: Currently defaults to `moondream:latest`.
 
-### Customizing the AI
+### Customising the AI
 
 #### 1. Changing the Model
 To use a different model (e.g., `llama3`, `mistral`, `gemma`), edit `ollamaService.ts`:
