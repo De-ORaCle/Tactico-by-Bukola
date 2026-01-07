@@ -296,7 +296,7 @@ const App: React.FC = () => {
   return (
     <div className="flex flex-col h-screen bg-gray-950 text-white select-none overflow-hidden font-sans">
       {/* Header / Nav */}
-      <header className="px-6 py-4 border-b border-gray-800 flex items-center justify-between bg-gray-900/50 backdrop-blur-md sticky top-0 z-50">
+      <header className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-800 flex flex-wrap items-center justify-between gap-3 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50">
         <div className="flex items-center gap-6">
           <button
             onClick={() => setIsSettingsOpen(!isSettingsOpen)}
@@ -312,15 +312,16 @@ const App: React.FC = () => {
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           </button>
-          <div className="flex flex-col">
+
+          <div className="flex flex-col hidden sm:flex">
             <h1 className="text-xl font-extrabold tracking-tighter text-white">
               Tactico <span className="text-green-500 text-xs stylized-by opacity-80 ml-1">by Bukola</span>
             </h1>
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 bg-gray-800/50 p-1.5 rounded-xl border border-gray-700/50">
+        <div className="flex items-center gap-3 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 no-scrollbar">
+          <div className="flex items-center gap-2 bg-gray-800/50 p-1.5 rounded-xl border border-gray-700/50 min-w-max">
             <button
               onClick={() => setActiveTool(Tool.SELECT)}
               className={`p-2 rounded-lg transition-all ${activeTool === Tool.SELECT ? 'bg-green-600 text-white shadow-lg scale-105' : 'hover:bg-gray-700 text-gray-400'}`}
@@ -444,12 +445,12 @@ const App: React.FC = () => {
             ANALYZE
           </button>
         </div>
-      </header>
+      </header >
 
       {/* Main Container */}
-      <div className="flex-1 flex overflow-hidden relative">
+      < div className="flex-1 flex overflow-hidden relative" >
         {/* Settings Panel */}
-        <div className={`absolute left-0 top-0 bottom-0 w-96 bg-gray-900 border-r border-gray-800 z-50 shadow-2xl transition-transform duration-300 transform ${isSettingsOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col`}>
+        < div className={`absolute left-0 top-0 bottom-0 w-full sm:w-96 bg-gray-900 border-r border-gray-800 z-50 shadow-2xl transition-transform duration-300 transform ${isSettingsOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col`}>
           <div className="p-6 border-b border-gray-800 flex items-center justify-between">
             <h2 className="text-lg font-bold uppercase tracking-tight">Squad Management</h2>
             <button onClick={() => setIsSettingsOpen(false)} className="text-gray-500 hover:text-white transition-colors">
@@ -525,13 +526,13 @@ const App: React.FC = () => {
               ))}
             </div>
           </div>
-        </div>
+        </div >
 
         {/* Board Area */}
-        <main className="flex-1 relative overflow-hidden flex items-center justify-center p-12 bg-[#020202]">
+        <main className="flex-1 relative overflow-hidden flex items-center justify-center p-2 sm:p-4 md:p-8 bg-[#020202]">
           <div
-            className="relative bg-[#1a4d2e] rounded-xl shadow-[0_30px_80px_rgba(0,0,0,0.7)] border-4 border-gray-800/60"
-            style={{ width: PITCH_DIMENSIONS.width, height: PITCH_DIMENSIONS.height }}
+            className="relative bg-[#1a4d2e] rounded-xl shadow-[0_30px_80px_rgba(0,0,0,0.7)] border-4 border-gray-800/60 aspect-[3/2] mx-auto"
+            style={{ width: 'min(100%, calc((100vh - 9rem) * 1.5))' }}
           >
             <svg
               ref={svgRef}
@@ -738,38 +739,40 @@ const App: React.FC = () => {
           </div>
 
           {/* AI Sidebar Overlay */}
-          {aiAnalysis && (
-            <div className="absolute top-8 right-8 w-80 max-h-[calc(100%-4rem)] bg-gray-900/95 border border-gray-700/40 rounded-3xl shadow-2xl overflow-y-auto p-6 z-40 backdrop-blur-xl animate-in slide-in-from-right duration-500">
-              <div className="flex items-center justify-between mb-5 border-b border-gray-800 pb-3">
-                <h3 className="font-bold flex items-center gap-2 text-xs uppercase tracking-widest">
-                  <span className="text-green-500">◆</span> AI Analysis
-                </h3>
-                <button onClick={() => setAiAnalysis(null)} className="text-gray-500 hover:text-white transition-colors">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
+          {
+            aiAnalysis && (
+              <div className="absolute top-8 right-8 w-80 max-h-[calc(100%-4rem)] bg-gray-900/95 border border-gray-700/40 rounded-3xl shadow-2xl overflow-y-auto p-6 z-40 backdrop-blur-xl animate-in slide-in-from-right duration-500">
+                <div className="flex items-center justify-between mb-5 border-b border-gray-800 pb-3">
+                  <h3 className="font-bold flex items-center gap-2 text-xs uppercase tracking-widest">
+                    <span className="text-green-500">◆</span> AI Analysis
+                  </h3>
+                  <button onClick={() => setAiAnalysis(null)} className="text-gray-500 hover:text-white transition-colors">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                  </button>
+                </div>
+                <div className="text-xs text-gray-300 space-y-4 leading-relaxed">
+                  <AnalysisContent text={aiAnalysis} />
+                </div>
               </div>
-              <div className="text-xs text-gray-300 space-y-4 leading-relaxed">
-                <AnalysisContent text={aiAnalysis} />
-              </div>
-            </div>
-          )}
-        </main>
-      </div>
+            )
+          }
+        </main >
+      </div >
 
       <HelpModal isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
 
       {/* Footer */}
-      <footer className="px-6 py-1.5 bg-gray-900 border-t border-gray-800 flex justify-between items-center text-[9px] text-gray-600 font-bold tracking-widest uppercase">
-        <div className="flex gap-5">
+      <footer className="px-4 py-2 sm:px-6 sm:py-1.5 bg-gray-900 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center text-[8px] sm:text-[9px] text-gray-600 font-bold tracking-widest uppercase gap-2">
+        <div className="flex gap-3 sm:gap-5 flex-wrap justify-center">
           <span>[V] Select</span>
           <span>[P] Pen</span>
           <span>[A] Arrow</span>
           <span>[T] Area</span>
           <span className="text-red-900">[DEL] Delete</span>
         </div>
-        <div className="opacity-50 tracking-[0.2em]">TACTICO BY BUKOLA v2.1</div>
+        <div className="opacity-50 tracking-[0.2em]">TACTICO BY BUKOLA v1.0</div>
       </footer>
-    </div>
+    </div >
   );
 };
 
