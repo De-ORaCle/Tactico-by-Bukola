@@ -95,7 +95,7 @@ Add to `FORMATION_TEMPLATES` in `constants.ts`. The keys (e.g., `'4-4-2'`) will 
 
 ---
 
-## 🤝 Contributing Checklist
+## Contributing Checklist
 
 1.  **Type Safety**: Always add new shapes to the `Drawing` interface in `types.ts`.
 2.  **Performance**: The board re-renders on every mouse move. Avoid heavy computations in `App.tsx` body; wraps handy handlers in `useCallback`.
