@@ -1,0 +1,5 @@
+{
+  "name": "Pro-Tactics Board",
+  "description": "A professional-grade football tactical analysis tool with interactive player placement, drawing capabilities for passes, runs, and formations, and AI-powered tactical insights.",
+  "requestFramePermissions": []
+}
